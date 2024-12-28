@@ -4,7 +4,7 @@ import { NgFor, NgIf, NgStyle } from '@angular/common';
 
 @Component({
   selector: 'app-detail',
-  imports: [NgStyle, NgFor, NgIf],
+  imports: [NgFor, NgIf],
   templateUrl: './detail.component.html',
   styleUrls: ['./detail.component.css'],
 })

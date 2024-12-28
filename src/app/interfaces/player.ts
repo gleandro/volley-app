@@ -3,7 +3,6 @@ interface Player {
   name: string;
   active: boolean;
   price: number;
-  detalles: number[];
 }
 
 export default Player;

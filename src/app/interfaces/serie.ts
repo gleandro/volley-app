@@ -1,9 +1,8 @@
-interface Serie {
-  id: number;
-  name: string;
-  active: boolean;
-  price: number;
-  detalles: number[];
-}
+import Player from "./player";
 
+export interface Serie {
+  id: number;
+  detail: string;
+  players: Player[];
+}
 export default Serie;

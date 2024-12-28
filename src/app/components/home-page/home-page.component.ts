@@ -1,19 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import Player from '../../interfaces/player';
+
 import { PlayerService } from '../../services/player.service';
 import { FormsModule } from '@angular/forms';
-import { NgStyle } from '@angular/common';
+import Player from '../../interfaces/player';
 
 @Component({
   selector: 'app-home-page',
-  imports: [FormsModule, NgStyle],
+  imports: [FormsModule],
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.css',
 })
 export class HomePageComponent implements OnInit {
   players: Player[] = [];
   selectedPlayerId: number | null = 0;
-  
+
   team1: Player[] = [];
   team2: Player[] = [];
 
@@ -60,18 +60,12 @@ export class HomePageComponent implements OnInit {
     const ganador = this.winner; // Asumiendo que tienes una propiedad 'winner' para el equipo ganador
 
     const totalJugadores = this.team1.length + this.team2.length;
-    const costoPorJugador = costoCancha / totalJugadores;
 
+    const costoPorJugador = costoCancha / totalJugadores;
     const actualizarPrecioJugador = (player: Player, esGanador: boolean) => {
       const costo = -costoPorJugador;
       const apuesta = esGanador ? montoApuesta : -montoApuesta;
       player.price += costo + apuesta;
-
-      if (!player.detalles) {
-        player.detalles = [];
-      }
-      player.detalles.push(costo);
-      player.detalles.push(apuesta);
     };
 
     this.team1.forEach((player) =>
