@@ -1,0 +1,114 @@
+<div class="container mt-5">
+  <h2 class="text-center">Registro de Equipos de Vóley</h2>
+
+  <!-- Formulario para ingresar los partidos -->
+  <form>
+    <!-- Partido 1 -->
+    <div class="mb-4">
+      <div class="row">
+        <div class="mb-3 col-4">
+          <label for="precio" class="form-label">Cancha/Palos</label>
+          <input
+            type="number"
+            class="form-control"
+            id="precio"
+            placeholder="Precio compartido"
+            [(ngModel)]="precio"
+            name="precio"
+            required
+          />
+        </div>
+
+        <!-- Monto Apostado -->
+        <div class="mb-3 col-4">
+          <label for="monto" class="form-label">Apuesta</label>
+          <input
+            type="number"
+            class="form-control"
+            id="monto"
+            placeholder="Monto apostado"
+            [(ngModel)]="monto"
+            name="monto"
+            required
+          />
+        </div>
+
+        <!-- Team winner -->
+        <div class="mb-3 col-4">
+          <label for="winner" class="form-label">Ganador</label>
+          <select class="form-select" [(ngModel)]="winner" name="winner">
+            <option value="1">Team 1</option>
+            <option value="2">Team 2</option>
+          </select>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-6">
+          <h4 class="mb-3">Equipo 1</h4>
+          <!-- Equipo 1 -->
+          <div class="mb-3">
+            <select
+              class="form-select"
+              [(ngModel)]="selectedPlayerId"
+              name="selectedPlayerId"
+              (change)="addPlayerToTeam1()"
+            >
+              @for (player of players; track player.id) {
+              <option value="{{ player.id }}">{{ player.name }}</option>
+              }@empty {
+              <option>lista vacia.</option>
+              }
+            </select>
+          </div>
+        </div>
+        <div class="col-6">
+          <h4 class="mb-3">Equipo 2</h4>
+          <!-- Equipo 1 -->
+          <div class="mb-3">
+            <select
+              class="form-select"
+              [(ngModel)]="selectedPlayerId"
+              name="selectedPlayerId"
+              (change)="addPlayerToTeam2()"
+            >
+              @for (player of players; track player.id) {
+              <option value="{{ player.id }}">{{ player.name }}</option>
+              }@empty {
+              <option>lista vacia.</option>
+              }
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-6 mb-3">
+          <ul class="list-group">
+            <li class="list-group-item">Equipo 1</li>
+            @for (team of team1; track team.id) {
+            <li class="list-group-item">{{ team.name }}</li>
+            }@empty {
+            <li class="list-group-item">Equipo vacio</li>
+            }
+          </ul>
+        </div>
+        <div class="col-6 mb-3">
+          <ul class="list-group">
+            <li class="list-group-item">Equipo 2</li>
+            @for (team of team2; track team.id) {
+            <li class="list-group-item">{{ team.name }}</li>
+            }@empty {
+            <li class="list-group-item">Equipo vacio</li>
+            }
+          </ul>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <button type="submit" class="btn btn-primary" (click)="guardar()">
+            Guardar Partido
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

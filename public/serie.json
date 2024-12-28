@@ -1,0 +1,61 @@
+[
+  {
+    "id": 1,
+    "detail": "Partido 1",
+    "players": [
+      {
+        "id": 1,
+        "name": "Carlux",
+        "price": 2
+      },
+      {
+        "id": 2,
+        "name": "Biscoxo",
+        "price": -2
+      },
+      {
+        "id": 3,
+        "name": "Billy",
+        "price": 2
+      },
+      {
+        "id": 4,
+        "name": "Juan",
+        "price": -2
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "detail": "Partido 2",
+    "players": [
+      {
+        "id": 1,
+        "name": "Carlux",
+        "price": 2
+      },
+      {
+        "id": 2,
+        "name": "Biscoxo",
+        "price": -2
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "detail": "Partido 3",
+    "players": [
+      {
+        "id": 1,
+        "name": "Carlux",
+        "price": -2
+      },
+      {
+        "id": 2,
+        "name": "Biscoxo",
+        "price": 2
+      }
+    ]
+  }
+  
+]

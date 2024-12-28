@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "name": "Carlux",
+    "active": true,
+    "price": 0
+  },
+  {
+    "id": 2,
+    "name": "Biscoxo",
+    "active": true,
+    "price": 0
+  },
+  {
+    "id": 3,
+    "name": "Pepis",
+    "active": true,
+    "price": 0
+  },
+  {
+    "id": 4,
+    "name": "Andrea Amea",
+    "active": true,
+    "price": 0
+  },
+  {
+    "id": 5,
+    "name": "Especial",
+    "active": true,
+    "price": 0
+  },
+  {
+    "id": 6,
+    "name": "Rubi",
+    "active": true,
+    "price": 0
+  },
+  {
+    "id": 7,
+    "name": "Cheli",
+    "active": true,
+    "price": 0
+  },
+  {
+    "id": 8,
+    "name": "Johana",
+    "active": true,
+    "price": 0
+  },
+  {
+    "id": 9,
+    "name": "Billy",
+    "active": true,
+    "price": 0
+  },
+  {
+    "id": 10,
+    "name": "Jair",
+    "active": true,
+    "price": 0
+  }
+]

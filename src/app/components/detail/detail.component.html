@@ -1,0 +1,21 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Jugador</th>
+      <th *ngFor="let partido of partidos">{{ partido.detail }}</th>
+      <th>Total</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let player of allPlayers">
+      <td>{{ player.name }}</td>
+      <td *ngFor="let partido of partidos">
+        <span *ngIf="getPlayerPrice(partido.players, player.id) !== null">
+          {{ getPlayerPrice(partido.players, player.id) }}
+        </span>
+        <span *ngIf="getPlayerPrice(partido.players, player.id) === null">-</span>
+      </td>
+      <td>{{ calcularTotalJugador(player.id) }}</td>
+    </tr>
+  </tbody>
+</table>
