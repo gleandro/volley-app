@@ -4,10 +4,13 @@ import { PlayerService } from '../../services/player.service';
 import { FormsModule } from '@angular/forms';
 import Player from '../../interfaces/player';
 import { Serie, Game } from '../../interfaces/serie';
+import { CommonModule } from '@angular/common';
+
+declare var bootstrap: any;
 
 @Component({
   selector: 'app-home-page',
-  imports: [FormsModule],
+  imports: [FormsModule, CommonModule],
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.css',
 })
@@ -57,7 +60,7 @@ export class HomePageComponent implements OnInit {
     }
   }
 
-  guardar() {
+  saveGame() {
     const montoApuesta = this.monto; // Asumiendo que tienes una propiedad 'monto' para el monto apostado
     const ganador = this.winner; // Asumiendo que tienes una propiedad 'winner' para el equipo ganador
 
@@ -65,16 +68,16 @@ export class HomePageComponent implements OnInit {
       player.price = esGanador ? montoApuesta : -montoApuesta;
     };
 
-    // Clonar los jugadores antes de actualizar sus precios
-    const team1Clonados = this.team1.map(player => this.clonePlayer(player));
-    const team2Clonados = this.team2.map(player => this.clonePlayer(player));  
-
-    team1Clonados.forEach(player => actualizarPrecioJugador(player, ganador === 1));
-    team2Clonados.forEach(player => actualizarPrecioJugador(player, ganador === 2));
+    this.team1.forEach((player) =>
+      actualizarPrecioJugador(player, ganador == 1)
+    );
+    this.team2.forEach((player) =>
+      actualizarPrecioJugador(player, ganador == 2)
+    );
 
     const nuevoPartido: Game = {
       detail: `Partido ${this.serie.games.length + 1}`,
-      players: [...team1Clonados, ...team2Clonados],
+      players: [...structuredClone(this.team1), ...structuredClone(this.team2)],
     };
 
     this.serie.games.push(nuevoPartido);
@@ -82,8 +85,36 @@ export class HomePageComponent implements OnInit {
     this.allPlayers = this.getAllPlayers(this.games);
   }
 
-  clonePlayer(player: Player): Player {
-    return { ...player };
+  saveSerie() {
+    const precioCompartido = this.precio / this.allPlayers.length;
+    let playersShared = structuredClone(this.allPlayers);
+
+    playersShared.forEach((player) => {
+      player.price = -precioCompartido;
+    });
+
+    const nuevoPartido: Game = {
+      detail: `Cancha/Palos`,
+      players: playersShared,
+    };
+
+    this.serie.games.push(nuevoPartido);
+    this.games = this.serie.games;
+    this.allPlayers = this.getAllPlayers(this.games);
+
+    const modalElement = document.getElementById('exampleModal');
+    if (modalElement) {
+      const modal = bootstrap.Modal.getInstance(modalElement);
+      modal.hide();
+    }
+  }
+
+  openModal() {
+    const modalElement = document.getElementById('exampleModal');
+    if (modalElement) {
+      const modal = new bootstrap.Modal(modalElement);
+      modal.show();
+    }
   }
 
   priceStyle(price: number) {
