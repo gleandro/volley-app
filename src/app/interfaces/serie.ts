@@ -2,7 +2,7 @@ import Player from "./player";
 
 export interface Serie {
   id: number;
-  detail: string;
+  date: Date;
   games: Game[];
 }
 
