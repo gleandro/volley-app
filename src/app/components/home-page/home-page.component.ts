@@ -5,6 +5,8 @@ import { FormsModule } from '@angular/forms';
 import Player from '../../interfaces/player';
 import { Serie, Game } from '../../interfaces/serie';
 import { CommonModule } from '@angular/common';
+import html2canvas from 'html2canvas';
+import { timeout } from 'rxjs';
 
 declare var bootstrap: any;
 
@@ -118,9 +120,11 @@ export class HomePageComponent implements OnInit {
   }
 
   priceStyle(price: number) {
-    return {
-      color: price > 0 ? 'green' : price < 0 ? 'red' : 'black',
-    };
+    return price > 0
+      ? 'text-success'
+      : price < 0
+      ? 'text-danger'
+      : 'text-secondary';
   }
 
   getAllPlayers(games: Game[]): Player[] {
@@ -145,5 +149,24 @@ export class HomePageComponent implements OnInit {
       const player = partido.players.find((p: Player) => p.id === playerId);
       return total + (player ? player.price : 0);
     }, 0);
+  }
+
+  exportTableAsImage() {
+    const tableElement = document.getElementById('tableExport'); // Asegúrate de asignar un ID al contenedor de la tabla
+    if (tableElement) {
+      html2canvas(tableElement).then((canvas) => {
+        const image = canvas.toDataURL('image/png');
+        this.downloadImage(image, 'table.png');
+      });
+    }
+  }
+
+  downloadImage(dataUrl: string, filename: string) {
+    const link = document.createElement('a');
+    link.href = dataUrl;
+    link.download = filename;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   }
 }
