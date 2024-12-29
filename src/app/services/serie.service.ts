@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { catchError, Observable, of } from 'rxjs';
+import { Serie } from '../interfaces/serie';
 
 @Injectable({
   providedIn: 'root',
@@ -8,9 +9,14 @@ import { Observable } from 'rxjs';
 export class SerieService {
   private jsonUrl = 'serie.json';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
-  getSeries(): Observable<any> {
-    return this.http.get<any>(this.jsonUrl);
+  getSeries(): Observable<Serie[]> {
+    return this.http.get<Serie[]>(this.jsonUrl).pipe(
+      catchError((error) => {
+        console.error('Error al obtener las series:', error);
+        return of([]); // Retorna un array vacío en caso de error
+      })
+    );
   }
 }

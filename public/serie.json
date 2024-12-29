@@ -1,59 +1,111 @@
 [
   {
     "id": 1,
-    "detail": "Partido 1",
-    "players": [
+    "date": "2024-12-27",
+    "games": [
       {
         "id": 1,
-        "name": "Carlux",
-        "price": 2
+        "detail": "Partido 1",
+        "players": [
+          { "id": 1, "name": "Carlux", "price": 1 },
+          { "id": 2, "name": "Biscoxo", "price": -1 },
+          { "id": 3, "name": "Pepis", "price": 1 },
+          { "id": 4, "name": "Andrea Amea", "price": -1 },
+          { "id": 5, "name": "Especial", "price": 1 },
+          { "id": 6, "name": "Rubi", "price": -1 },
+          { "id": 7, "name": "Cheli", "price": 1 },
+          { "id": 8, "name": "Johana", "price": -1 },
+          { "id": 9, "name": "Billy", "price": 1 },
+          { "id": 10, "name": "Jair", "price": -1 }
+        ]
       },
       {
         "id": 2,
-        "name": "Biscoxo",
-        "price": -2
+        "detail": "Partido 2",
+        "players": [
+          { "id": 1, "name": "Carlux", "price": 3 },
+          { "id": 2, "name": "Biscoxo", "price": -3 },
+          { "id": 3, "name": "Pepis", "price": 3 },
+          { "id": 4, "name": "Andrea Amea", "price": -3 },
+          { "id": 5, "name": "Especial", "price": 3 },
+          { "id": 6, "name": "Rubi", "price": -3 },
+          { "id": 7, "name": "Cheli", "price": 3 },
+          { "id": 8, "name": "Johana", "price": -3 },
+          { "id": 9, "name": "Billy", "price": 3 },
+          { "id": 10, "name": "Jair", "price": -3 }
+        ]
       },
       {
         "id": 3,
-        "name": "Billy",
-        "price": 2
-      },
-      {
-        "id": 4,
-        "name": "Juan",
-        "price": -2
+        "detail": "Partido 3",
+        "players": [
+          { "id": 1, "name": "Carlux", "price": 3 },
+          { "id": 2, "name": "Biscoxo", "price": -3 },
+          { "id": 3, "name": "Pepis", "price": 3 },
+          { "id": 4, "name": "Andrea Amea", "price": -3 },
+          { "id": 5, "name": "Especial", "price": 3 },
+          { "id": 6, "name": "Rubi", "price": -3 },
+          { "id": 7, "name": "Cheli", "price": 3 },
+          { "id": 8, "name": "Johana", "price": -3 },
+          { "id": 9, "name": "Billy", "price": 3 },
+          { "id": 10, "name": "Jair", "price": -3 }
+        ]
       }
     ]
   },
   {
     "id": 2,
-    "detail": "Partido 2",
-    "players": [
+    "date": "2024-12-28",
+    "games": [
       {
         "id": 1,
-        "name": "Carlux",
-        "price": 2
-      },
-      {
-        "id": 2,
-        "name": "Biscoxo",
-        "price": -2
+        "detail": "Partido 1",
+        "players": [
+          { "id": 1, "name": "Carlux", "price": 2 },
+          { "id": 2, "name": "Biscoxo", "price": -2 },
+          { "id": 3, "name": "Pepis", "price": 2 },
+          { "id": 4, "name": "Andrea Amea", "price": -2 },
+          { "id": 5, "name": "Especial", "price": 2 },
+          { "id": 6, "name": "Rubi", "price": -2 },
+          { "id": 7, "name": "Cheli", "price": 2 },
+          { "id": 8, "name": "Johana", "price": -2 },
+          { "id": 9, "name": "Billy", "price": 2 },
+          { "id": 10, "name": "Jair", "price": -2 }
+        ]
       }
     ]
   },
   {
     "id": 3,
-    "detail": "Partido 3",
-    "players": [
+    "date": "2024-12-29",
+    "games": [
       {
         "id": 1,
-        "name": "Carlux",
-        "price": -2
+        "detail": "Partido 1",
+        "players": [
+          { "id": 1, "name": "Carlux", "price": 1 },
+          { "id": 2, "name": "Biscoxo", "price": -1 },
+          { "id": 3, "name": "Pepis", "price": 1 },
+          { "id": 4, "name": "Andrea Amea", "price": -1 },
+          { "id": 5, "name": "Especial", "price": 1 },
+          { "id": 6, "name": "Rubi", "price": -1 },
+          { "id": 7, "name": "Cheli", "price": 1 },
+          { "id": 8, "name": "Johana", "price": -1 },
+          { "id": 9, "name": "Billy", "price": 1 },
+          { "id": 10, "name": "Jair", "price": -1 }
+        ]
       },
       {
         "id": 2,
-        "name": "Biscoxo",
-        "price": 2
+        "detail": "Partido 2",
+        "players": [
+          { "id": 1, "name": "Carlux", "price": 2 },
+          { "id": 2, "name": "Biscoxo", "price": -2 },
+          { "id": 5, "name": "Especial", "price": 2 },
+          { "id": 7, "name": "Cheli", "price": -2 },
+          { "id": 9, "name": "Billy", "price": 2 },
+          { "id": 10, "name": "Jair", "price": -2 }
+        ]
       }
     ]
   }
