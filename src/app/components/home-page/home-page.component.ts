@@ -17,7 +17,7 @@ export class HomePageComponent implements OnInit {
 
   team1: Player[] = [];
   team2: Player[] = [];
-  serie: Serie = { id: 1, detail: 'Serie 1', games: [] };
+  serie: Serie = { id: 1, date: new Date('2024-12-28'), games: [] };
 
   games: Game[] = [];
   allPlayers: Player[] = [];
@@ -65,21 +65,25 @@ export class HomePageComponent implements OnInit {
       player.price = esGanador ? montoApuesta : -montoApuesta;
     };
 
-    this.team1.forEach((player) =>
-      actualizarPrecioJugador(player, ganador == 1)
-    );
-    this.team2.forEach((player) =>
-      actualizarPrecioJugador(player, ganador == 2)
-    );
+    // Clonar los jugadores antes de actualizar sus precios
+    const team1Clonados = this.team1.map(player => this.clonePlayer(player));
+    const team2Clonados = this.team2.map(player => this.clonePlayer(player));  
+
+    team1Clonados.forEach(player => actualizarPrecioJugador(player, ganador === 1));
+    team2Clonados.forEach(player => actualizarPrecioJugador(player, ganador === 2));
 
     const nuevoPartido: Game = {
       detail: `Partido ${this.serie.games.length + 1}`,
-      players: [...this.team1, ...this.team2],
+      players: [...team1Clonados, ...team2Clonados],
     };
 
     this.serie.games.push(nuevoPartido);
     this.games = this.serie.games;
     this.allPlayers = this.getAllPlayers(this.games);
+  }
+
+  clonePlayer(player: Player): Player {
+    return { ...player };
   }
 
   priceStyle(price: number) {
