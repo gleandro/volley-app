@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { PlayerService } from '../../services/player.service';
 import { FormsModule } from '@angular/forms';
 import Player from '../../interfaces/player';
+import Serie from '../../interfaces/serie';
 
 @Component({
   selector: 'app-home-page',
@@ -16,6 +17,7 @@ export class HomePageComponent implements OnInit {
 
   team1: Player[] = [];
   team2: Player[] = [];
+  serie: Serie | null = null;
 
   winner: number = 0;
   precio: number = 0;
