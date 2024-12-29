@@ -5,20 +5,7 @@
   <form>
     <!-- Partido 1 -->
     <div class="mb-4">
-      <div class="row">
-        <div class="mb-3 col-4">
-          <label for="precio" class="form-label">Cancha/Palos</label>
-          <input
-            type="number"
-            class="form-control"
-            id="precio"
-            placeholder="Precio compartido"
-            [(ngModel)]="precio"
-            name="precio"
-            required
-          />
-        </div>
-
+      <div class="row d-flex justify-content-center align-items-end">
         <!-- Monto Apostado -->
         <div class="mb-3 col-4">
           <label for="monto" class="form-label">Apuesta</label>
@@ -40,6 +27,12 @@
             <option value="1">Team 1</option>
             <option value="2">Team 2</option>
           </select>
+        </div>
+
+        <div class="mb-3 col-4 d-flex justify-content-end">
+          <button type="submit" class="btn btn-primary" (click)="guardar()">
+            Guardar Partido
+          </button>
         </div>
       </div>
       <div class="row">
@@ -103,38 +96,32 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-12">
-          <button type="submit" class="btn btn-primary" (click)="guardar()">
-            Guardar Partido
-          </button>
-        </div>
-      </div>
-      <div class="row">
         <table class="table table-striped">
           <thead>
             <tr>
               <th>Jugador</th>
-              @for (partido of serie.partidos; track $index) {}
-              <th *ngFor="let partido of partidos">{{ partido.detail }}</th>
+              @for (game of serie?.games; track game.detail) {
+              <th>{{ game.detail }}</th>
+              }
               <th>Total</th>
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let player of allPlayers">
+            @for(player of allPlayers; track player.id){
+            <tr>
               <td>{{ player.name }}</td>
-              <td *ngFor="let partido of partidos">
-                <span
-                  *ngIf="getPlayerPrice(partido.players, player.id) !== null"
-                >
-                  {{ getPlayerPrice(partido.players, player.id) }}
-                </span>
-                <span
-                  *ngIf="getPlayerPrice(partido.players, player.id) === null"
-                  >-</span
-                >
+              @for (game of games; track game.detail) {
+              <td>
+                @if (getPlayerPrice(game.players, player.id) !== null) {
+                <span> {{ getPlayerPrice(game.players, player.id) }} </span>
+                } @else {
+                <span>-</span>
+                }
               </td>
+              }
               <td>{{ calcularTotalJugador(player.id) }}</td>
             </tr>
+            }
           </tbody>
         </table>
       </div>

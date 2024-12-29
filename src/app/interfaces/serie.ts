@@ -1,14 +1,12 @@
 import Player from "./player";
 
-interface Serie {
+export interface Serie {
   id: number;
   detail: string;
-  games: game[];
+  games: Game[];
 }
 
-interface game {
+export interface Game {
   detail: string;
   players: Player[];
 }
-
-export default Serie;
