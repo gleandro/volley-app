@@ -89,8 +89,14 @@ export class HomePageComponent implements OnInit {
     const montoApuesta = this.monto; // Asumiendo que tienes una propiedad 'monto' para el monto apostado
     const ganador = this.winner; // Asumiendo que tienes una propiedad 'winner' para el equipo ganador
 
+    const equipoGanador = ganador == 1 ? this.team1 : this.team2;
+    const equipoPerdedor = ganador == 1 ? this.team2 : this.team1;
+  
+    const totalApuesta = montoApuesta * equipoPerdedor.length;
+    const gananciaPorJugador = totalApuesta / equipoGanador.length;
+
     const actualizarPrecioJugador = (player: Player, esGanador: boolean) => {
-      player.price = esGanador ? montoApuesta : -montoApuesta;
+      player.price = esGanador ? gananciaPorJugador : -montoApuesta;
     };
 
     this.team1.forEach((player) =>
