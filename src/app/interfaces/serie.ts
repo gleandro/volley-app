@@ -7,6 +7,7 @@ export interface Serie {
 }
 
 export interface Game {
+  id: number;
   detail: string;
   players: Player[];
 }

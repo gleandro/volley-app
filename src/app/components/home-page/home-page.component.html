@@ -59,11 +59,10 @@
           <!-- Equipo 1 -->
           <div class="mb-3">
             <select class="form-select" [(ngModel)]="selectedPlayerId" name="selectedPlayerId"
-              (change)="addPlayerToTeam1()">
+              (change)="addPlayerToTeam(1)">
+              <option value="0">--Select a player--</option>
               @for (player of players; track player.id) {
               <option value="{{ player.id }}">{{ player.name }}</option>
-              }@empty {
-              <option>lista vacia.</option>
               }
             </select>
           </div>
@@ -73,11 +72,10 @@
           <!-- Equipo 1 -->
           <div class="mb-3">
             <select class="form-select" [(ngModel)]="selectedPlayerId" name="selectedPlayerId"
-              (change)="addPlayerToTeam2()">
+              (change)="addPlayerToTeam(2)">
+              <option value="0">--Select a player--</option>
               @for (player of players; track player.id) {
               <option value="{{ player.id }}">{{ player.name }}</option>
-              }@empty {
-              <option>lista vacia.</option>
               }
             </select>
           </div>
@@ -86,9 +84,12 @@
       <div class="row">
         <div class="col-6 mb-3">
           <ul class="list-group">
-            <li class="list-group-item">Equipo 1</li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">Equipo 1</li>
             @for (team of team1; track team.id) {
-            <li class="list-group-item">{{ team.name }}</li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">{{ team.name }}
+              <i class="bi bi-x-circle text-danger" (click)="removePlayerFromTeam(team.id,1)"
+                style="cursor: pointer;"></i>
+            </li>
             }@empty {
             <li class="list-group-item">Equipo vacio</li>
             }
@@ -96,30 +97,35 @@
         </div>
         <div class="col-6 mb-3">
           <ul class="list-group">
-            <li class="list-group-item">Equipo 2</li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">Equipo 2</li>
             @for (team of team2; track team.id) {
-            <li class="list-group-item">{{ team.name }}</li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">{{ team.name }}
+              <i class="bi bi-x-circle text-danger" (click)="removePlayerFromTeam(team.id,2)"
+                style="cursor: pointer;"></i>
+            </li>
             }@empty {
             <li class="list-group-item">Equipo vacio</li>
             }
           </ul>
         </div>
       </div>
-      <div class="row">
+      <div>
         @if (serie.games.length > 0) {
-        <button type="button" class="btn btn-primary" (click)="openModal()">
+        <button type="button" class="btn btn-primary me-2" (click)="openModal()">
           Finalizar Serie
         </button>
-        <button type="button" class="btn btn-success" (click)="exportTableAsImage()">
+        <button type="button" class="btn btn-success me-2" (click)="exportTableAsImage()">
           Descargar Excel
         </button>
-        }
+
         <table class="table table-striped" id="tableExport">
           <thead>
             <tr>
               <th>Jugador</th>
-              @for (game of serie?.games; track game.detail) {
-              <th>{{ game.detail }}</th>
+              @for (game of serie?.games; track game.id) {
+              <th>{{ game.detail }}
+                <i class="bi bi-trash" (click)="removeGame(game.id)" style="cursor: pointer; color: red;"></i>
+              </th>
               }
               <th>Total</th>
             </tr>
@@ -148,6 +154,7 @@
             }
           </tbody>
         </table>
+        }
       </div>
     </div>
   </form>

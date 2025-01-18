@@ -40,29 +40,52 @@ export class HomePageComponent implements OnInit {
     });
   }
 
-  addPlayerToTeam1() {
+  addPlayerToTeam(t: number) {
     const selectedPlayerIndex = this.players.findIndex(
       (player) => player.id == this.selectedPlayerId
     );
     if (selectedPlayerIndex > -1) {
       const [removedPlayer] = this.players.splice(selectedPlayerIndex, 1);
       // Add the player to the other list
-      this.team1.push(removedPlayer);
+      const team = t == 1 ? this.team1 : this.team2;
+      team.push(removedPlayer);
+      setTimeout(() => {
+        this.selectedPlayerId = 0;
+      }, 10);
     }
   }
 
-  addPlayerToTeam2() {
-    const selectedPlayerIndex = this.players.findIndex(
-      (player) => player.id == this.selectedPlayerId
-    );
-    if (selectedPlayerIndex > -1) {
-      const [removedPlayer] = this.players.splice(selectedPlayerIndex, 1);
-      // Add the player to the other list
-      this.team2.push(removedPlayer);
+  removePlayerFromTeam(playerId: number, t: number) {
+    const team = t == 1 ? this.team1 : this.team2;
+    const playerIndex = team.findIndex((player) => player.id === playerId);
+    if (playerIndex > -1) {
+      const [removedPlayer] = team.splice(playerIndex, 1);
+      this.players.push(removedPlayer);
     }
+  }
+
+  validation(): Boolean {
+    if (this.team1.length == 0 || this.team2.length == 0) {
+      alert('Debes seleccionar jugadores para ambos equipos');
+      return false;
+    }
+
+    if (this.monto <= 0) {
+      alert('Debes ingresar un monto válido');
+      return false;
+    }
+
+    if (this.winner == 0) {
+      alert('Debes seleccionar un ganador');
+      return false;
+    }
+    return true;
   }
 
   saveGame() {
+    const valid = this.validation();
+    if (!valid) return;
+
     const montoApuesta = this.monto; // Asumiendo que tienes una propiedad 'monto' para el monto apostado
     const ganador = this.winner; // Asumiendo que tienes una propiedad 'winner' para el equipo ganador
 
@@ -78,6 +101,7 @@ export class HomePageComponent implements OnInit {
     );
 
     const nuevoPartido: Game = {
+      id: this.serie.games.length + 1,
       detail: `Partido ${this.serie.games.length + 1}`,
       players: [...structuredClone(this.team1), ...structuredClone(this.team2)],
     };
@@ -85,6 +109,17 @@ export class HomePageComponent implements OnInit {
     this.serie.games.push(nuevoPartido);
     this.games = this.serie.games;
     this.allPlayers = this.getAllPlayers(this.games);
+
+    console.log(this.serie);
+  }
+
+  removeGame(gameId: number) {
+    const gameIndex = this.serie.games.findIndex((game) => game.id === gameId);
+    if (gameIndex > -1) {
+      this.serie.games.splice(gameIndex, 1);
+      this.games = this.serie.games;
+      this.allPlayers = this.getAllPlayers(this.games);
+    }
   }
 
   saveSerie() {
@@ -96,6 +131,7 @@ export class HomePageComponent implements OnInit {
     });
 
     const nuevoPartido: Game = {
+      id: this.serie.games.length + 1,
       detail: `Cancha/Palos`,
       players: playersShared,
     };
