@@ -34,7 +34,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <ol>  
+          <ol>
             <li>&nbsp;Arma los equipos con las listas que dicen <b class="text-danger">--Select a player--</b></li>
             <li>&nbsp;Ingresa el monto apostado y el ganador del partido</li>
             <li>&nbsp;Guarda el partido, dando click en el boton <b class="text-danger">Guardar Partido</b></li>
@@ -59,14 +59,14 @@
     <div class="mb-4">
       <div class="row d-flex justify-content-center align-items-end">
         <!-- Monto Apostado -->
-        <div class="mb-3 col-3">
+        <div class="mb-3 col-6 col-md-3">
           <label for="monto" class="form-label">Apuesta</label>
           <input type="number" class="form-control" id="monto" placeholder="Monto apostado" [(ngModel)]="monto"
             name="monto" required />
         </div>
 
         <!-- Team winner -->
-        <div class="mb-3 col-3">
+        <div class="mb-3 col-6 col-md-3">
           <label for="winner" class="form-label">Ganador</label>
           <select class="form-select" [(ngModel)]="winner" name="winner">
             <option value="0">--Select a winner--</option>
@@ -75,7 +75,7 @@
           </select>
         </div>
 
-        <div class="mb-3 col-6 d-flex justify-content-end">
+        <div class="mb-3 col-md-6 d-flex justify-content-end">
           <button type="button" class="btn btn-warning me-2" (click)="openModal2()">
             Instrucciones
           </button>
@@ -85,35 +85,16 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-6">
+        <div class="col-12 col-md-6 mb-3">
           <h4 class="mb-3">Equipo 1</h4>
           <!-- Equipo 1 -->
-          <div class="mb-3">
-            <select class="form-select" [(ngModel)]="selectedPlayerId" name="selectedPlayerId"
-              (change)="addPlayerToTeam(1)">
-              <option value="0">--Select a player--</option>
-              @for (player of players; track player.id) {
-              <option value="{{ player.id }}">{{ player.name }}</option>
-              }
-            </select>
-          </div>
-        </div>
-        <div class="col-6">
-          <h4 class="mb-3">Equipo 2</h4>
-          <!-- Equipo 1 -->
-          <div class="mb-3">
-            <select class="form-select" [(ngModel)]="selectedPlayerId" name="selectedPlayerId"
-              (change)="addPlayerToTeam(2)">
-              <option value="0">--Select a player--</option>
-              @for (player of players; track player.id) {
-              <option value="{{ player.id }}">{{ player.name }}</option>
-              }
-            </select>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-6 mb-3">
+          <select class="form-select mb-3" [(ngModel)]="selectedPlayerId" name="selectedPlayerId"
+            (change)="addPlayerToTeam(1)">
+            <option value="0">--Select a player--</option>
+            @for (player of players; track player.id) {
+            <option value="{{ player.id }}">{{ player.name }}</option>
+            }
+          </select>
           <ul class="list-group">
             <li class="list-group-item d-flex justify-content-between align-items-center">Equipo 1</li>
             @for (team of team1; track team.id) {
@@ -126,7 +107,16 @@
             }
           </ul>
         </div>
-        <div class="col-6 mb-3">
+        <div class="col-12 col-md-6 mb-3">
+          <h4 class="mb-3">Equipo 2</h4>
+          <!-- Equipo 1 -->
+          <select class="form-select mb-3" [(ngModel)]="selectedPlayerId" name="selectedPlayerId"
+            (change)="addPlayerToTeam(2)">
+            <option value="0">--Select a player--</option>
+            @for (player of players; track player.id) {
+            <option value="{{ player.id }}">{{ player.name }}</option>
+            }
+          </select>
           <ul class="list-group">
             <li class="list-group-item d-flex justify-content-between align-items-center">Equipo 2</li>
             @for (team of team2; track team.id) {
@@ -150,42 +140,44 @@
             Descargar Excel
           </button>
         </div>
-        <table class="table table-striped" id="tableExport">
-          <thead>
-            <tr>
-              <th>Jugador</th>
-              @for (game of serie?.games; track game.id) {
-              <th>{{ game.detail }}
-                <i class="bi bi-trash" (click)="removeGame(game.id)" style="cursor: pointer; color: red;"></i>
-              </th>
-              }
-              <th>Total</th>
-            </tr>
-          </thead>
-          <tbody>
-            @for(player of allPlayers; track player.id){
-            <tr>
-              <td>{{ player.name }}</td>
-              @for (game of games; track game.detail) {
-              <td>
-                @if (getPlayerPrice(game.players, player.id) !== null) {
-                <span [ngClass]="priceStyle(getPlayerPrice(game.players!, player.id!) ?? 0)">
-                  {{
-                  getPlayerPrice(game.players, player.id) | number : "1.2-2"
-                  }}
-                </span>
-                } @else {
-                <span>-</span>
+        <div class="table-responsive">
+          <table class="table  table-striped" id="tableExport">
+            <thead>
+              <tr>
+                <th>Jugador</th>
+                @for (game of serie?.games; track game.id) {
+                <th>{{ game.detail }}
+                  <i class="bi bi-trash" (click)="removeGame(game.id)" style="cursor: pointer; color: red;"></i>
+                </th>
                 }
-              </td>
+                <th>Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for(player of allPlayers; track player.id){
+              <tr>
+                <td>{{ player.name }}</td>
+                @for (game of games; track game.detail) {
+                <td>
+                  @if (getPlayerPrice(game.players, player.id) !== null) {
+                  <span [ngClass]="priceStyle(getPlayerPrice(game.players!, player.id!) ?? 0)">
+                    {{
+                    getPlayerPrice(game.players, player.id) | number : "1.2-2"
+                    }}
+                  </span>
+                  } @else {
+                  <span>-</span>
+                  }
+                </td>
+                }
+                <td class="fw-bold" [ngClass]="priceStyle(calcularTotalJugador(player.id))">
+                  {{ calcularTotalJugador(player.id) | number : "1.2-2" }}
+                </td>
+              </tr>
               }
-              <td class="fw-bold" [ngClass]="priceStyle(calcularTotalJugador(player.id))">
-                {{ calcularTotalJugador(player.id) | number : "1.2-2" }}
-              </td>
-            </tr>
-            }
-          </tbody>
-        </table>
+            </tbody>
+          </table>
+        </div>
         }
       </div>
     </div>
