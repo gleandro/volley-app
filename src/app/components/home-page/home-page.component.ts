@@ -36,6 +36,7 @@ export class HomePageComponent implements OnInit {
   ngOnInit() {
     this.playerService.getPlayers().subscribe((players) => {
       this.players = players;
+      this.players.sort((a, b) => a.name.localeCompare(b.name));
       console.log(this.players);
     });
   }
@@ -61,6 +62,7 @@ export class HomePageComponent implements OnInit {
     if (playerIndex > -1) {
       const [removedPlayer] = team.splice(playerIndex, 1);
       this.players.push(removedPlayer);
+      this.players.sort((a, b) => a.name.localeCompare(b.name));
     }
   }
 
@@ -155,6 +157,14 @@ export class HomePageComponent implements OnInit {
 
   openModal() {
     const modalElement = document.getElementById('exampleModal');
+    if (modalElement) {
+      const modal = new bootstrap.Modal(modalElement);
+      modal.show();
+    }
+  }
+
+  openModal2() {
+    const modalElement = document.getElementById('exampleModal2');
     if (modalElement) {
       const modal = new bootstrap.Modal(modalElement);
       modal.show();

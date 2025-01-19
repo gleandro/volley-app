@@ -1,4 +1,4 @@
-<div class="container mt-5">
+<div class="container pt-5">
   <h2 class="text-center">Registro de Equipos de Vóley</h2>
 
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -26,28 +26,59 @@
     </div>
   </div>
 
+  <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModal2Label" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModal2Label">Instrucciones</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <ol>  
+            <li>&nbsp;Arma los equipos con las listas que dicen <b class="text-danger">--Select a player--</b></li>
+            <li>&nbsp;Ingresa el monto apostado y el ganador del partido</li>
+            <li>&nbsp;Guarda el partido, dando click en el boton <b class="text-danger">Guardar Partido</b></li>
+            <li>&nbsp;Repite el paso 3 hasta que termines de registrar todos los partidos que se jugaron</li>
+            <li>&nbsp;Finaliza la serie dando click en el boton <b class="text-danger">Finalizar Serie</b></li>
+            <li>&nbsp;Ingresar el monto de la cancha o los palos, este monto de repartira a todos los jugadores</li>
+            <li>&nbsp;Guarda la serie dando click en el boton <b class="text-danger">Guardar Serie</b></li>
+          </ol>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+            Cerrar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Formulario para ingresar los partidos -->
   <form>
     <!-- Partido 1 -->
     <div class="mb-4">
       <div class="row d-flex justify-content-center align-items-end">
         <!-- Monto Apostado -->
-        <div class="mb-3 col-4">
+        <div class="mb-3 col-3">
           <label for="monto" class="form-label">Apuesta</label>
           <input type="number" class="form-control" id="monto" placeholder="Monto apostado" [(ngModel)]="monto"
             name="monto" required />
         </div>
 
         <!-- Team winner -->
-        <div class="mb-3 col-4">
+        <div class="mb-3 col-3">
           <label for="winner" class="form-label">Ganador</label>
           <select class="form-select" [(ngModel)]="winner" name="winner">
+            <option value="0">--Select a winner--</option>
             <option value="1">Team 1</option>
             <option value="2">Team 2</option>
           </select>
         </div>
 
-        <div class="mb-3 col-4 d-flex justify-content-end">
+        <div class="mb-3 col-6 d-flex justify-content-end">
+          <button type="button" class="btn btn-warning me-2" (click)="openModal2()">
+            Instrucciones
+          </button>
           <button type="submit" class="btn btn-primary" (click)="saveGame()">
             Guardar Partido
           </button>
@@ -111,13 +142,14 @@
       </div>
       <div>
         @if (serie.games.length > 0) {
-        <button type="button" class="btn btn-primary me-2" (click)="openModal()">
-          Finalizar Serie
-        </button>
-        <button type="button" class="btn btn-success me-2" (click)="exportTableAsImage()">
-          Descargar Excel
-        </button>
-
+        <div class="pb-3">
+          <button type="button" class="btn btn-primary me-2" (click)="openModal()">
+            Finalizar Serie
+          </button>
+          <button type="button" class="btn btn-success me-2" (click)="exportTableAsImage()">
+            Descargar Excel
+          </button>
+        </div>
         <table class="table table-striped" id="tableExport">
           <thead>
             <tr>

@@ -70,5 +70,35 @@
     "name": "Calm",
     "active": true,
     "price": 0
+  },
+  {
+    "id": 13,
+    "name": "Sayu",
+    "active": true,
+    "price": 0
+  },
+  {
+    "id": 14,
+    "name": "Mako",
+    "active": true,
+    "price": 0
+  },
+  {
+    "id": 15,
+    "name": "Karen",
+    "active": true,
+    "price": 0
+  },
+  {
+    "id": 16,
+    "name": "z_Invitado1",
+    "active": true,
+    "price": 0
+  },
+  {
+    "id": 17,
+    "name": "z_Invitado2",
+    "active": true,
+    "price": 0
   }
 ]
