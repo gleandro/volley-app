@@ -91,13 +91,43 @@
   },
   {
     "id": 16,
-    "name": "z_Invitado1",
+    "name": "Antony",
     "active": true,
     "price": 0
   },
   {
     "id": 17,
+    "name": "Anders",
+    "active": true,
+    "price": 0
+  },
+  {
+    "id": 18,
+    "name": "Kathy",
+    "active": true,
+    "price": 0
+  },
+  {
+    "id": 996,
+    "name": "z_Invitado1",
+    "active": true,
+    "price": 0
+  },
+  {
+    "id": 997,
     "name": "z_Invitado2",
+    "active": true,
+    "price": 0
+  },
+  {
+    "id": 998,
+    "name": "z_Invitado3",
+    "active": true,
+    "price": 0
+  },
+  {
+    "id": 999,
+    "name": "z_Invitado4",
     "active": true,
     "price": 0
   }
