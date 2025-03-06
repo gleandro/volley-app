@@ -130,5 +130,11 @@
     "name": "z_Invitado4",
     "active": true,
     "price": 0
+  },
+  {
+    "id": 1000,
+    "name": "z_Invitado5",
+    "active": true,
+    "price": 0
   }
 ]
