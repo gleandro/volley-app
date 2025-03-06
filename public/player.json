@@ -108,32 +108,26 @@
     "price": 0
   },
   {
-    "id": 996,
+    "id": 19,
     "name": "z_Invitado1",
     "active": true,
     "price": 0
   },
   {
-    "id": 997,
+    "id": 20,
     "name": "z_Invitado2",
     "active": true,
     "price": 0
   },
   {
-    "id": 998,
+    "id": 21,
     "name": "z_Invitado3",
     "active": true,
     "price": 0
   },
   {
-    "id": 999,
+    "id": 22,
     "name": "z_Invitado4",
-    "active": true,
-    "price": 0
-  },
-  {
-    "id": 1000,
-    "name": "z_Invitado5",
     "active": true,
     "price": 0
   }
