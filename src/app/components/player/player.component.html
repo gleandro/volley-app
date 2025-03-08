@@ -1,0 +1,73 @@
+<div class="container mt-5">
+  <h1 class="mb-4">Listado de Jugadores</h1>
+  <div class="mb-4 row">
+    <div class="col-10">
+      <input type="text" class="form-control" placeholder="Buscar jugador" [(ngModel)]="playerFilter" (keyup)="filterPlayers()">
+    </div>
+    <div class="col-2">
+      <button type="button" class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Nuevo Jugador
+      </button>
+    </div>
+
+  </div>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th class="text-center">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (player of players; track player.id) {
+      <tr>
+        <td>{{player.name}}</td>
+        <td class="text-center">
+          <button class="btn btn-sm btn-primary me-2" data-bs-toggle="modal" data-bs-target="#exampleModal2"
+            (click)="setPlayerToEdit(player)">Editar</button>
+          <button class="btn btn-sm btn-danger" (click)="deletePlayer(player.id)">Eliminar</button>
+        </td>
+      </tr>
+      }
+    </tbody>
+  </table>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog text-dark">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Nuevo Jugador</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <input type="text" class="form-control" placeholder="Nombre del jugador" [(ngModel)]="playerName">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="createPlayer()">Crear</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModal2Label" aria-hidden="true">
+  <div class="modal-dialog text-dark">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModal2Label">Editar Jugador</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <input type="text" class="form-control" placeholder="Nombre del jugador" [(ngModel)]="player.name">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
+          (click)="updatePlayer()">Actualizar</button>
+      </div>
+    </div>
+  </div>
+</div>

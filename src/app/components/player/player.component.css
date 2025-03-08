@@ -1,0 +1,3 @@
+.container {
+    min-height: 100vh; /* Asegura que el contenedor tenga al menos la altura de la ventana */
+  }

@@ -76,7 +76,7 @@
         </div>
 
         <div class="mb-3 col-md-6 d-flex justify-content-end">
-          <button type="button" class="btn btn-warning me-2" (click)="openModal2()">
+          <button type="button" class="btn btn-warning me-2" data-bs-toggle="modal" data-bs-target="#exampleModal2">
             Instrucciones
           </button>
           <button type="submit" class="btn btn-primary" (click)="saveGame()">
@@ -133,7 +133,7 @@
       <div>
         @if (serie.games.length > 0) {
         <div class="pb-3">
-          <button type="button" class="btn btn-primary me-2" (click)="openModal()">
+          <button type="button" class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#exampleModal1">
             Finalizar Serie
           </button>
           <button type="button" class="btn btn-success me-2" (click)="exportTableAsImage()">

@@ -155,22 +155,6 @@ export class HomePageComponent implements OnInit {
     }
   }
 
-  openModal() {
-    const modalElement = document.getElementById('exampleModal');
-    if (modalElement) {
-      const modal = new bootstrap.Modal(modalElement);
-      modal.show();
-    }
-  }
-
-  openModal2() {
-    const modalElement = document.getElementById('exampleModal2');
-    if (modalElement) {
-      const modal = new bootstrap.Modal(modalElement);
-      modal.show();
-    }
-  }
-
   priceStyle(price: number) {
     return price > 0
       ? 'text-success'
